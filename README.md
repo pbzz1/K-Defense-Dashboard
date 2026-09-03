@@ -1,6 +1,10 @@
 
 # 🚀 K-Defense Global Expansion Strategy Platform
 
+![K-Defense Global Market Map](assets/global-market-map.png)
+
+
+
 
 데이터 기반 분석을 통해 **한국 방산 기업의 글로벌 진출 전략**을 도출하는 프로젝트입니다.  
 글로벌 방산 시장 데이터를 수집하고 분석하여 **권역별 수요를 파악하고 기업별 전략을 제안**합니다.
@@ -119,6 +123,63 @@ K-Defense-Global-Expansion
 - Korea Aerospace Industries
 - Hanwha Systems
 - Poongsan
+
+---
+
+# ⚡ Getting Started
+
+로컬에서 프로젝트를 실행하는 방법입니다. (Windows / Python 3.10+ / Node 18+)
+
+## 1. Clone
+
+```bash
+git clone https://github.com/pbzz1/K-Defense-Dashboard.git
+cd K-Defense-Dashboard
+```
+
+## 2. Backend (Flask, port 5000)
+
+```bash
+cd backend
+python -m venv .venv
+.venv\Scripts\activate
+pip install -r requirements.txt
+```
+
+`backend/.env` 파일을 만들고 한국투자증권 OpenAPI 키를 넣습니다.
+(키가 없으면 서버가 시작 시 `RuntimeError`로 종료됩니다.)
+
+```
+KIS_APP_KEY=your_app_key
+KIS_APP_SECRET=your_app_secret
+```
+
+```bash
+python app.py
+```
+
+→ http://localhost:5000
+
+## 3. Frontend (React, port 3000)
+
+새 터미널에서:
+
+```bash
+cd frontend
+npm install
+npm start
+```
+
+→ http://localhost:3000
+
+프론트엔드는 API 주소를 `http://localhost:5000`으로 하드코딩해서 호출하므로,
+백엔드를 먼저 띄운 상태에서 사용해야 합니다.
+
+## Notes
+
+- 차트의 한글 라벨은 `C:/Windows/Fonts/malgun.ttf`(맑은 고딕)를 사용합니다. macOS / Linux에서는 `backend/app.py`의 `FONT_PATH`를 수정해야 합니다.
+- `backend/services/marketstack.py`는 `MARKETSTACK_API_KEY` 설정이 필요하며 현재 `app.py`에 연결되어 있지 않습니다.
+- 배포용 정적 빌드는 `cd frontend && npm run build`.
 
 ---
 
